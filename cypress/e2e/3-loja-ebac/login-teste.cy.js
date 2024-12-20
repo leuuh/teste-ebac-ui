@@ -1,11 +1,12 @@
 /// <reference types="cypress"/>
 const perfil = require('../../fixtures/perfil.json')
 
-describe ('Funcionalidade: Login',() => {
-
+describe('Funcionalidade: login', () => {
+    
     beforeEach(() => {
         cy.visit('minha-conta')
     });
+});
 
     //afterEach(() => {
         //cy.screenshot()
@@ -41,7 +42,7 @@ describe ('Funcionalidade: Login',() => {
         cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, leo.teste-2675 (não é leo.teste-2675? Sair)')
     });
 
-    it.only('Deve fazer login com sucesso - Usando Fixture', () => {
+    it('Deve fazer login com sucesso - Usando Fixture', () => {
         cy.fixture('perfil').then(dados =>{
             cy.get('#username').type(dados.usuario , {log: false})
             cy.get('#password').type(dados.senha , {log: false})
@@ -49,4 +50,3 @@ describe ('Funcionalidade: Login',() => {
             cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, leo.teste-2675 (não é leo.teste-2675? Sair)')
         })
     });
-})
