@@ -6,7 +6,6 @@ describe('Funcionalidade: login', () => {
     beforeEach(() => {
         cy.visit('minha-conta')
     });
-});
 
     //afterEach(() => {
         //cy.screenshot()
@@ -50,3 +49,11 @@ describe('Funcionalidade: login', () => {
             cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, leo.teste-2675 (não é leo.teste-2675? Sair)')
         })
     });
+
+    it('Deve fazer login com sucesso - Usando comandos customizados', () => {
+        cy.login('leo.teste@teste.com.br', 'teste123')
+        cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, leo.teste-2675 (não é leo.teste-2675? Sair)')
+        
+    });
+
+});
