@@ -1,19 +1,29 @@
 /// <reference types="cypress"/>
+import produtosPage from "../../support/pages-objects/produtos.page";
 
 describe('Funcionalidade: Produtos', () => {
 
     beforeEach(() => {
-        cy.visit('http://lojaebac.ebaconline.art.br/produtos/')
+        produtosPage.visitarUrl()
     });
 
     it('Deve selecionar um produto da lista', () => {
-        cy.get('.product-block')
-            //.first()
-            //.last()
-            //.eq(2)
-            .contains('Arcadio Gym Short')
-            .click()
-            cy.get('#tab-description > :nth-child(1)').should ('contain', 'The Arcadio Gym short is a basic-looking')
+        produtosPage.buscarProdutoLista('Aero Daily Fitness Tee')
+            cy.get('#tab-title-description > a').should('exist')    
             
+    });
+
+    it.only('Deve buscar um produto com sucesso', () => {
+        let produto = 'Rocco Gym Tank'
+        produtosPage.buscarProdutos(produto)
+        cy.get('.product_title').should('contain', produto)
+    });
+
+    it('Deve visitar a pagina do produto', () => {
+        
+    });
+
+    it('Deve adicionar produto ao carrinho', () => {
+        
     });
 });
