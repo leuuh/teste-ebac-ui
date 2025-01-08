@@ -26,7 +26,7 @@ describe('Funcionalidade: Produtos', () => {
         cy.get('.woocommerce-message').should('include.text', `${qtd} × “Atomic Endurance Running Tee (Crew-Neck)” foram adicionados no seu carrinho.`)
       });
 
-      it.only('Deve adicionar produto ao carrinho buscando da massa de dados', () => {
+      it('Deve adicionar produto ao carrinho buscando da massa de dados', () => {
         cy.fixture('produtos').then(dados =>{
 
             produtosPage.buscarProdutos(dados[1].nomeProduto);
