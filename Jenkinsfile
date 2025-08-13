@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Executar Testes') {
             steps {
-                bat 'set NO_COLOR=1 && npm test'
+                bat 'set NO_COLOR=1 && npx cypress run --browser chrome --headed --no-exit'
             }
         }
     }
