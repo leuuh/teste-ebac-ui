@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        // Configurações globais
-        CYPRESS_INSTALL_BINARY = "0"  # Desabilita instalação automática pelo npm
+        // Desabilita instalação automática pelo npm
+        CYPRESS_INSTALL_BINARY = "0"
     }
 
     stages {
@@ -16,10 +16,11 @@ pipeline {
                         bat 'rmdir /s /q node_modules || exit 0'
                         bat 'npm install'
                         
-                        // Instalação específica do Cypress com versão estável
+                        // Instalação específica do Cypress
                         bat 'npx cypress install --force'
                     } catch (e) {
-                        // Fallback: tenta instalar uma versão mais recente
+                        // Fallback: instala versão mais recente
+                        echo "Falha na instalação, tentando versão mais recente..."
                         bat 'npm install cypress@latest --save-dev'
                         bat 'npx cypress install --force'
                     }
