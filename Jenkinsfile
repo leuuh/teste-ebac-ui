@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        // Desabilita instalação automática pelo npm
-        CYPRESS_INSTALL_BINARY = "0"
-    }
-
     stages {
         stage('Instalar dependências') {
             steps {
@@ -14,9 +9,9 @@ pipeline {
                         // Limpeza e instalação de dependências
                         bat 'npm cache clean --force'
                         bat 'rmdir /s /q node_modules || exit 0'
-                        bat 'npm install'
+                        bat 'set CYPRESS_INSTALL_BINARY=0 && npm install'
                         
-                        // Instalação específica do Cypress
+                        // Instalação específica do Cypress (sem env var para permitir binary)
                         bat 'npx cypress install --force'
                     } catch (e) {
                         // Fallback: instala versão mais recente
